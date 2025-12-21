@@ -1,12 +1,80 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
-name = "indirect-tax-portfolio"
-version = "0.0.1"
-dependencies = [
-    "pandas",
-    "sqlalchemy",
-    "openpyxl",
-    "pytest"
+name = "indtax"
+version = "1.0.0"
+description = "EMEA Indirect Tax Automation Toolkit - VAT calculations, reconciliation, and compliance reporting"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Hatef Tabbakhian", email = "tabbakhianhatef@gmail.com"}
 ]
+keywords = [
+    "vat",
+    "tax",
+    "indirect-tax",
+    "emea",
+    "eu",
+    "compliance",
+    "reconciliation",
+    "accounting",
+    "finance",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+]
+reporting = [
+    "pandas>=1.5.0",
+    "openpyxl>=3.1.0",
+    "jinja2>=3.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Leotaby/Indirect-Tax-Portfolio"
+Repository = "https://github.com/Leotaby/Indirect-Tax-Portfolio"
+Issues = "https://github.com/Leotaby/Indirect-Tax-Portfolio/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "D", "UP"]
+ignore = ["D100", "D104"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
